@@ -1,0 +1,587 @@
+{
+  "metadata": {
+    "source_url": "https://data.london.gov.uk/dataset/number-of-bicycle-hires-2r84d",
+    "download_url": "https://data.london.gov.uk/download/2r84d/ac29363e-e0cb-47cc-a97a-e216d900a6b0/tfl-daily-cycle-hires.xlsx",
+    "source_cutoff": "2026-08-31",
+    "data_start": "2010-07-30",
+    "data_end": "2026-08-31",
+    "train_start": "2015-01-01",
+    "train_end": "2023-12-31",
+    "initial_train_end": "2022-12-31",
+    "validation_start": "2023-01-02",
+    "validation_end": "2023-12-31",
+    "calibration_start": "2024-01-08",
+    "calibration_end": "2024-12-29",
+    "test_start": "2025-01-06",
+    "test_end": "2026-08-30",
+    "publisher": "Transport for London",
+    "licence": "Open Government Licence v2.0",
+    "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/",
+    "snapshot_label": "Pinned TfL snapshot through 31 August 2026; no live data connection.",
+    "feature_count": 21
+  },
+  "overview": {
+    "selected_model": "ridge",
+    "selected_name": "Ridge regression",
+    "mae": 2870.577430805092,
+    "rmse": 3984.8519958146107,
+    "wape": 11.311055828584568,
+    "smape": 12.604217627535617,
+    "baseline_improvement_percent": 19.659406005124,
+    "coverage": 0.9019933554817275,
+    "mean_interval_width": 12667.451278435676,
+    "test_weeks": 86,
+    "test_days": 602,
+    "nominal_coverage": 0.9
+  },
+  "models": [
+    {
+      "id": "seasonal_naive",
+      "name": "Previous week, same weekday",
+      "validation_mae": 3589.5576923076924,
+      "mae": 3573.009966777409,
+      "rmse": 5038.599874075128,
+      "wape": 14.078880010902049,
+      "smape": 16.06723654180899
+    },
+    {
+      "id": "weekday_mean",
+      "name": "Four-week weekday mean",
+      "validation_mae": 3434.003434065934,
+      "mae": 3376.6823089700997,
+      "rmse": 4673.516465926723,
+      "wape": 13.305281962536252,
+      "smape": 14.81072075336945
+    },
+    {
+      "id": "ridge",
+      "name": "Ridge regression",
+      "validation_mae": 3178.1248833123873,
+      "mae": 2870.577430805092,
+      "rmse": 3984.8519958146107,
+      "wape": 11.311055828584568,
+      "smape": 12.604217627535617
+    },
+    {
+      "id": "hist_gradient_boosting",
+      "name": "Histogram gradient boosting",
+      "validation_mae": 3560.5436555451547,
+      "mae": 3194.1209224922,
+      "rmse": 4087.751158434536,
+      "wape": 12.585927726543328,
+      "smape": 13.583433402248573
+    }
+  ],
+  "diagnostics": {
+    "by_horizon": [
+      {
+        "horizon": 1,
+        "mae": 2633.881075609701,
+        "rmse": 3629.522909606437,
+        "wape": 10.31337891747678,
+        "smape": 11.14684001456434,
+        "coverage": 0.9069767441860465,
+        "mean_width": 11561.991395211337,
+        "count": 86
+      },
+      {
+        "horizon": 2,
+        "mae": 2893.5535091517363,
+        "rmse": 4962.250061414182,
+        "wape": 10.245682585615825,
+        "smape": 11.970902197343223,
+        "coverage": 0.9302325581395349,
+        "mean_width": 13675.89054756995,
+        "count": 86
+      },
+      {
+        "horizon": 3,
+        "mae": 3090.3289408154724,
+        "rmse": 3915.9319540083907,
+        "wape": 10.935693041103882,
+        "smape": 12.19971974143255,
+        "coverage": 0.8023255813953488,
+        "mean_width": 9195.392451108515,
+        "count": 86
+      },
+      {
+        "horizon": 4,
+        "mae": 3093.1879445605764,
+        "rmse": 4105.632832592756,
+        "wape": 11.056806649700341,
+        "smape": 12.161551737607939,
+        "coverage": 0.9186046511627907,
+        "mean_width": 13869.446873189232,
+        "count": 86
+      },
+      {
+        "horizon": 5,
+        "mae": 2593.755353565088,
+        "rmse": 3439.541448843689,
+        "wape": 10.301478440962523,
+        "smape": 11.70436306703814,
+        "coverage": 0.9418604651162791,
+        "mean_width": 13152.83242911905,
+        "count": 86
+      },
+      {
+        "horizon": 6,
+        "mae": 2767.5770264258654,
+        "rmse": 3876.627341041415,
+        "wape": 12.465433640919004,
+        "smape": 13.55336555707638,
+        "coverage": 0.9302325581395349,
+        "mean_width": 14799.94976040054,
+        "count": 86
+      },
+      {
+        "horizon": 7,
+        "mae": 3021.7581655071986,
+        "rmse": 3782.3969691664583,
+        "wape": 14.919032872792915,
+        "smape": 15.492781077686747,
+        "coverage": 0.8837209302325582,
+        "mean_width": 12416.655492451102,
+        "count": 86
+      }
+    ],
+    "by_weekday": [
+      {
+        "weekday": "Monday",
+        "weekday_number": 0,
+        "mae": 2633.881075609701,
+        "rmse": 3629.522909606437,
+        "wape": 10.31337891747678,
+        "smape": 11.14684001456434,
+        "count": 86
+      },
+      {
+        "weekday": "Tuesday",
+        "weekday_number": 1,
+        "mae": 2893.5535091517363,
+        "rmse": 4962.250061414182,
+        "wape": 10.245682585615825,
+        "smape": 11.970902197343223,
+        "count": 86
+      },
+      {
+        "weekday": "Wednesday",
+        "weekday_number": 2,
+        "mae": 3090.3289408154724,
+        "rmse": 3915.9319540083907,
+        "wape": 10.935693041103882,
+        "smape": 12.19971974143255,
+        "count": 86
+      },
+      {
+        "weekday": "Thursday",
+        "weekday_number": 3,
+        "mae": 3093.1879445605764,
+        "rmse": 4105.632832592756,
+        "wape": 11.056806649700341,
+        "smape": 12.161551737607939,
+        "count": 86
+      },
+      {
+        "weekday": "Friday",
+        "weekday_number": 4,
+        "mae": 2593.755353565088,
+        "rmse": 3439.541448843689,
+        "wape": 10.301478440962523,
+        "smape": 11.70436306703814,
+        "count": 86
+      },
+      {
+        "weekday": "Saturday",
+        "weekday_number": 5,
+        "mae": 2767.5770264258654,
+        "rmse": 3876.627341041415,
+        "wape": 12.465433640919004,
+        "smape": 13.55336555707638,
+        "count": 86
+      },
+      {
+        "weekday": "Sunday",
+        "weekday_number": 6,
+        "mae": 3021.7581655071986,
+        "rmse": 3782.3969691664583,
+        "wape": 14.919032872792915,
+        "smape": 15.492781077686747,
+        "count": 86
+      }
+    ],
+    "monthly": [
+      {
+        "month": "2025-01",
+        "mae": 3764.6978241894153,
+        "rmse": 4274.4416104671855,
+        "wape": 18.869647180974383,
+        "smape": 20.749480963778176,
+        "coverage": 0.8076923076923077,
+        "count": 26
+      },
+      {
+        "month": "2025-02",
+        "mae": 2231.6397015679754,
+        "rmse": 2570.4520189414793,
+        "wape": 10.882653605217765,
+        "smape": 11.606869129242936,
+        "coverage": 1.0,
+        "count": 28
+      },
+      {
+        "month": "2025-03",
+        "mae": 2878.447634871195,
+        "rmse": 3391.1728570813507,
+        "wape": 11.51546956924133,
+        "smape": 12.301716234068438,
+        "coverage": 0.9354838709677419,
+        "count": 31
+      },
+      {
+        "month": "2025-04",
+        "mae": 2759.6963923184467,
+        "rmse": 3672.741690254526,
+        "wape": 10.876179435920486,
+        "smape": 11.579096580216163,
+        "coverage": 0.8666666666666667,
+        "count": 30
+      },
+      {
+        "month": "2025-05",
+        "mae": 3205.4464160090606,
+        "rmse": 4172.510037970799,
+        "wape": 11.561331959222574,
+        "smape": 11.953481028624703,
+        "coverage": 0.8709677419354839,
+        "count": 31
+      },
+      {
+        "month": "2025-06",
+        "mae": 2329.160661759093,
+        "rmse": 3590.2541684406024,
+        "wape": 8.15004517997478,
+        "smape": 8.695612618498814,
+        "coverage": 0.9333333333333333,
+        "count": 30
+      },
+      {
+        "month": "2025-07",
+        "mae": 2336.8174347502973,
+        "rmse": 3454.8319365835214,
+        "wape": 8.062636811562081,
+        "smape": 8.614389144201306,
+        "coverage": 0.9354838709677419,
+        "count": 31
+      },
+      {
+        "month": "2025-08",
+        "mae": 3338.937008416467,
+        "rmse": 6358.556081155188,
+        "wape": 12.864442524205936,
+        "smape": 15.018821602196814,
+        "coverage": 0.967741935483871,
+        "count": 31
+      },
+      {
+        "month": "2025-09",
+        "mae": 3996.9883888513623,
+        "rmse": 6050.429312282193,
+        "wape": 13.840642466407212,
+        "smape": 13.887640960818842,
+        "coverage": 0.8,
+        "count": 30
+      },
+      {
+        "month": "2025-10",
+        "mae": 2830.693705545448,
+        "rmse": 3256.1968077787096,
+        "wape": 10.566461587134652,
+        "smape": 11.164735485133983,
+        "coverage": 0.9354838709677419,
+        "count": 31
+      },
+      {
+        "month": "2025-11",
+        "mae": 2671.372285305254,
+        "rmse": 3253.9802649706894,
+        "wape": 11.239806421092158,
+        "smape": 11.774407688892172,
+        "coverage": 0.9666666666666667,
+        "count": 30
+      },
+      {
+        "month": "2025-12",
+        "mae": 4265.712894114895,
+        "rmse": 5338.421035183686,
+        "wape": 23.674815008264478,
+        "smape": 25.960963607152394,
+        "coverage": 0.8064516129032258,
+        "count": 31
+      },
+      {
+        "month": "2026-01",
+        "mae": 3612.0835588530676,
+        "rmse": 4362.9136156985605,
+        "wape": 19.408830651495183,
+        "smape": 20.63867412590335,
+        "coverage": 0.8064516129032258,
+        "count": 31
+      },
+      {
+        "month": "2026-02",
+        "mae": 2705.8779622853626,
+        "rmse": 3564.001362429724,
+        "wape": 13.419945364144585,
+        "smape": 14.143902215535878,
+        "coverage": 0.8928571428571429,
+        "count": 28
+      },
+      {
+        "month": "2026-03",
+        "mae": 2698.509894908602,
+        "rmse": 3203.9354699461605,
+        "wape": 11.051255775344952,
+        "smape": 11.362663327900352,
+        "coverage": 0.967741935483871,
+        "count": 31
+      },
+      {
+        "month": "2026-04",
+        "mae": 2726.104962987865,
+        "rmse": 3401.8394131287814,
+        "wape": 10.18924363410287,
+        "smape": 10.732631453869075,
+        "coverage": 0.9,
+        "count": 30
+      },
+      {
+        "month": "2026-05",
+        "mae": 2197.64272185872,
+        "rmse": 2834.0799407122868,
+        "wape": 7.895039144105782,
+        "smape": 8.272889062621049,
+        "coverage": 0.9354838709677419,
+        "count": 31
+      },
+      {
+        "month": "2026-06",
+        "mae": 3062.994352063799,
+        "rmse": 4506.143962954804,
+        "wape": 10.900788355615473,
+        "smape": 11.258710665346399,
+        "coverage": 0.8666666666666667,
+        "count": 30
+      },
+      {
+        "month": "2026-07",
+        "mae": 1773.718277768191,
+        "rmse": 2419.0184494173136,
+        "wape": 5.413832662902939,
+        "smape": 5.44759267399026,
+        "coverage": 0.9354838709677419,
+        "count": 31
+      },
+      {
+        "month": "2026-08",
+        "mae": 2076.238935643264,
+        "rmse": 3211.750659136622,
+        "wape": 7.4335902889073395,
+        "smape": 7.885806499652874,
+        "coverage": 0.9,
+        "count": 30
+      }
+    ],
+    "intervals": {
+      "nominal_coverage": 0.9,
+      "coverage": 0.9019933554817275,
+      "mean_width": 12667.451278435676,
+      "radii": {
+        "1": 5780.995697605667,
+        "2": 6837.945273784979,
+        "3": 4597.696225554257,
+        "4": 6934.723436594617,
+        "5": 6576.416214559522,
+        "6": 7399.974880200272,
+        "7": 6208.327746225552
+      },
+      "finite_ranks": {
+        "1": 47,
+        "2": 47,
+        "3": 47,
+        "4": 47,
+        "5": 47,
+        "6": 47,
+        "7": 47
+      },
+      "calibration_weeks": 51
+    }
+  },
+  "candidates": [
+    {
+      "model": "seasonal_naive",
+      "parameters": {},
+      "mae": 3589.5576923076924,
+      "rmse": 4830.524576489176,
+      "wape": 15.333817077726176,
+      "smape": 17.1928385060547
+    },
+    {
+      "model": "weekday_mean",
+      "parameters": {},
+      "mae": 3434.003434065934,
+      "rmse": 4406.942530352653,
+      "wape": 14.669322801272006,
+      "smape": 16.21995083450424
+    },
+    {
+      "model": "ridge",
+      "parameters": {
+        "alpha": 10.0
+      },
+      "mae": 3218.8676413525313,
+      "rmse": 4417.830609425327,
+      "wape": 13.750309046622437,
+      "smape": 14.619192515798526
+    },
+    {
+      "model": "ridge",
+      "parameters": {
+        "alpha": 100.0
+      },
+      "mae": 3178.1248833123873,
+      "rmse": 4366.204212466722,
+      "wape": 13.576264762456612,
+      "smape": 14.501728292112384
+    },
+    {
+      "model": "hist_gradient_boosting",
+      "parameters": {
+        "max_iter": 220,
+        "max_leaf_nodes": 15,
+        "learning_rate": 0.06,
+        "l2_regularization": 10,
+        "min_samples_leaf": 35
+      },
+      "mae": 3560.5436555451547,
+      "rmse": 4490.403174073092,
+      "wape": 15.209875363860824,
+      "smape": 16.412730659830384
+    },
+    {
+      "model": "hist_gradient_boosting",
+      "parameters": {
+        "max_iter": 260,
+        "max_leaf_nodes": 31,
+        "learning_rate": 0.06,
+        "l2_regularization": 10,
+        "min_samples_leaf": 35
+      },
+      "mae": 3832.1961024697803,
+      "rmse": 4948.271778713352,
+      "wape": 16.37031608857334,
+      "smape": 17.334554559619857
+    },
+    {
+      "model": "hist_gradient_boosting",
+      "parameters": {
+        "max_iter": 180,
+        "max_leaf_nodes": 15,
+        "learning_rate": 0.1,
+        "l2_regularization": 30,
+        "min_samples_leaf": 60
+      },
+      "mae": 3698.123037431362,
+      "rmse": 4652.067771562448,
+      "wape": 15.797584841279328,
+      "smape": 16.803977197528486
+    }
+  ],
+  "selected_parameters": {
+    "alpha": 100.0
+  },
+  "splits": {
+    "fit": {
+      "origins": 2928,
+      "rows": 20454,
+      "origin_start": "2014-12-25",
+      "origin_end": "2022-12-30",
+      "target_start": "2015-01-01",
+      "target_end": "2022-12-31"
+    },
+    "refit": {
+      "origins": 3293,
+      "rows": 23009,
+      "origin_start": "2014-12-25",
+      "origin_end": "2023-12-30",
+      "target_start": "2015-01-01",
+      "target_end": "2023-12-31"
+    },
+    "validation": {
+      "origins": 52,
+      "rows": 364,
+      "origin_start": "2023-01-01",
+      "origin_end": "2023-12-24",
+      "target_start": "2023-01-02",
+      "target_end": "2023-12-31"
+    },
+    "calibration": {
+      "origins": 51,
+      "rows": 357,
+      "origin_start": "2024-01-07",
+      "origin_end": "2024-12-22",
+      "target_start": "2024-01-08",
+      "target_end": "2024-12-29"
+    },
+    "test": {
+      "origins": 86,
+      "rows": 602,
+      "origin_start": "2025-01-05",
+      "origin_end": "2026-08-23",
+      "target_start": "2025-01-06",
+      "target_end": "2026-08-30"
+    },
+    "selection_metric": "Validation MAE",
+    "evaluation_origin_weekday": "Sunday",
+    "training_target_start": "2015-01-01",
+    "training_target_end": "2022-12-31",
+    "final_training_target_end": "2023-12-31",
+    "calibration_target_year": 2024,
+    "unused_early_history": "2010–2014 counts remain visible and supply lag context; their targets are excluded from training to avoid scheme launch ramp-up.",
+    "training_targets_repeated": "Each observed training date can be a target at seven origins/horizons. Evaluation weeks have unique target dates."
+  },
+  "model_sha256": "e535281102ea151f5638cbbdb2d5d47c674a5dbd41ec5f24c26fe4459166376e",
+  "features": [
+    "horizon",
+    "origin_hires",
+    "lag_1",
+    "lag_7",
+    "lag_14",
+    "lag_28",
+    "rolling_7_mean",
+    "rolling_7_std",
+    "rolling_28_mean",
+    "rolling_28_std",
+    "week_change",
+    "target_weekday_last",
+    "target_weekday_mean_4",
+    "target_weekday_std_4",
+    "weekday_sin",
+    "weekday_cos",
+    "month_sin",
+    "month_cos",
+    "year_sin",
+    "year_cos",
+    "time_years"
+  ],
+  "protocol": "Candidates and split dates specified before test scoring. Models selected on 2023 validation MAE, refitted through 2023, then ranges frozen on 2024 before test scoring.",
+  "limitations": [
+    "Temporal residuals are dependent. Finite-rank correction does not establish distribution-free coverage for this time series.",
+    "Sunday-origin evaluation makes forecast horizon and target weekday inseparable. Coverage on other origin weekdays has not been assessed.",
+    "The benchmark uses one revised publisher snapshot, not as-published data vintages. Historical counts may differ slightly from those available on the original forecast dates.",
+    "Weather, future closures, bank holidays and special events are not explicit model inputs.",
+    "The target measures completed scheme hires, not unmet demand, unique riders or station-level needs.",
+    "2025–2026 may differ from the pre-2024 training regime; test diagnostics report this observed shift."
+  ],
+  "training_seconds": 3.89
+}

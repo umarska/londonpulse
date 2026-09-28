@@ -1,0 +1,32 @@
+{
+  "publisher": "Transport for London",
+  "dataset": "Number of Bicycle Hires",
+  "source_url": "https://data.london.gov.uk/download/2r84d/ac29363e-e0cb-47cc-a97a-e216d900a6b0/tfl-daily-cycle-hires.xlsx",
+  "source_page": "https://data.london.gov.uk/dataset/number-of-bicycle-hires-2r84d",
+  "licence": "Open Government Licence v2.0",
+  "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/",
+  "downloaded_on": "2026-10-05",
+  "source_sha256": "82b9bd20ca2dd06fc3906e6287c7ff98022d48f0e015add99d818cf99adab829",
+  "source_bytes": 148067,
+  "processed_sha256": "3c26907d589c67e7bc3019757bd8bc36e93fb06e33fedd118ec8379804606157",
+  "quality": {
+    "source_rows": 5877,
+    "calendar_rows": 5877,
+    "missing_dates": [],
+    "duplicate_dates": 0,
+    "zero_dates": [
+      "2022-09-10",
+      "2022-09-11"
+    ],
+    "data_start": "2010-07-30",
+    "data_end": "2026-08-31",
+    "total_hires": 154053134,
+    "minimum": 0,
+    "maximum": 73094,
+    "missing_policy": "Missing days remain blank. Origins requiring any missing history or target are excluded.",
+    "source_notes": [
+      "The source reports zero hires on 10–11 September 2022 and documents a full scheme shutdown. These are retained as observed service counts, not interpreted as zero underlying demand.",
+      "From 1 August 2017, delayed system events can revise daily figures. Counts usually stabilise after two weeks."
+    ]
+  }
+}

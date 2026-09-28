@@ -1,0 +1,50 @@
+{
+  "fit": {
+    "origins": 2928,
+    "rows": 20454,
+    "origin_start": "2014-12-25",
+    "origin_end": "2022-12-30",
+    "target_start": "2015-01-01",
+    "target_end": "2022-12-31"
+  },
+  "refit": {
+    "origins": 3293,
+    "rows": 23009,
+    "origin_start": "2014-12-25",
+    "origin_end": "2023-12-30",
+    "target_start": "2015-01-01",
+    "target_end": "2023-12-31"
+  },
+  "validation": {
+    "origins": 52,
+    "rows": 364,
+    "origin_start": "2023-01-01",
+    "origin_end": "2023-12-24",
+    "target_start": "2023-01-02",
+    "target_end": "2023-12-31"
+  },
+  "calibration": {
+    "origins": 51,
+    "rows": 357,
+    "origin_start": "2024-01-07",
+    "origin_end": "2024-12-22",
+    "target_start": "2024-01-08",
+    "target_end": "2024-12-29"
+  },
+  "test": {
+    "origins": 86,
+    "rows": 602,
+    "origin_start": "2025-01-05",
+    "origin_end": "2026-08-23",
+    "target_start": "2025-01-06",
+    "target_end": "2026-08-30"
+  },
+  "selection_metric": "Validation MAE",
+  "evaluation_origin_weekday": "Sunday",
+  "training_target_start": "2015-01-01",
+  "training_target_end": "2022-12-31",
+  "final_training_target_end": "2023-12-31",
+  "calibration_target_year": 2024,
+  "unused_early_history": "2010–2014 counts remain visible and supply lag context; their targets are excluded from training to avoid scheme launch ramp-up.",
+  "training_targets_repeated": "Each observed training date can be a target at seven origins/horizons. Evaluation weeks have unique target dates."
+}

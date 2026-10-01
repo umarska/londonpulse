@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#16453b">
+  <meta name="description" content="LondonPulse: an evidence-led, seven-day forecasting study of London's cycle hire demand.">
+  <title>LondonPulse · The rhythm of a city</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header shell">
+    <a class="brand" href="#forecast" aria-label="LondonPulse home"><span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 36 24"><circle cx="8" cy="16" r="6"/><circle cx="28" cy="16" r="6"/><path d="m8 16 7-12 6 12H8l6-9h11l3 9M12 4h6M24 2h4"/></svg></span><span>London<span class="brand-light">Pulse</span></span></a>
+    <div class="header-caption">A machine learning study<br><span>London cycle hire · 7-day outlook</span></div>
+    <span class="snapshot-badge"><span aria-hidden="true"></span>Historical snapshot</span>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="masthead">
+      <div>
+        <p class="eyebrow">The rhythm of a city</p>
+        <h1>Movement has a pattern.<br><em>Make it useful.</em></h1>
+      </div>
+      <div class="masthead-note"><p>Seven days of London cycle hire demand, forecast from preceding daily counts and the known calendar.</p><p class="quiet">Real TfL data. Measured performance. Room for uncertainty.</p></div>
+    </section>
+
+    <nav class="view-tabs" aria-label="Explore LondonPulse">
+      <button class="view-tab active" data-view="forecast" aria-current="page"><span>01</span> The outlook</button>
+      <button class="view-tab" data-view="replay"><span>02</span> Replay forecasts</button>
+      <button class="view-tab" data-view="evidence"><span>03</span> The evidence</button>
+      <button class="view-tab" data-view="method"><span>04</span> The method</button>
+    </nav>
+
+    <div id="load-status" class="load-status" role="status"><span class="loading-dot"></span> Reading the city's history…</div>
+    <div id="app-error" class="error-banner" role="alert" hidden></div>
+
+    <section id="view-forecast" class="view-panel" aria-labelledby="forecast-title" hidden>
+      <div class="section-heading"><div><p class="eyebrow">A considered outlook</p><h2 id="forecast-title">Seven days ahead.</h2><p class="section-subtitle" id="forecast-dates"></p></div><div class="section-actions"><button class="button button-secondary" id="open-upload">Analyse a history <span aria-hidden="true">↗</span></button><a class="button button-primary" id="forecast-export" href="/api/download">Export forecast <span aria-hidden="true">↓</span></a></div></div>
+      <div class="context-strip"><span id="data-cutoff"></span><span id="model-name"></span><span>City-wide hires · each calendar day</span></div>
+      <div class="metric-row" id="forecast-metrics"></div>
+      <div class="forecast-warning" id="forecast-warning" role="note" hidden></div>
+      <div class="outlook-grid">
+        <article class="card forecast-card"><div class="card-heading"><div><p class="eyebrow">Daily demand</p><h3>A week, with room either side.</h3></div><span class="unit-tag">hires / day</span></div><div class="chart-legend"><span><i class="legend-dot"></i> Forecast</span><span><i class="legend-band"></i> Prediction range</span></div><div id="forecast-chart" class="forecast-chart"></div><p class="chart-footnote" id="forecast-footnote"></p></article>
+        <aside class="card planning-card"><p class="eyebrow">Read the outlook</p><h3 id="forecast-insight-title">The shape of the week.</h3><p id="forecast-insight"></p><div class="planning-rule"></div><span class="small-label">What this can support</span><p>Exploring daily demand and planning a conversation about capacity.</p><span class="small-label">What it cannot tell you</span><p>Where bicycles will be needed. These totals cover the whole scheme, with no station-level forecasts.</p><a href="#method" class="text-link" data-goto="method">Understand the limits <span aria-hidden="true">→</span></a></aside>
+      </div>
+      <article class="card history-card"><div class="card-heading"><div><p class="eyebrow">The view behind the forecast</p><h3>The last 90 days.</h3></div><span class="unit-tag">observed hires / day</span></div><div id="latest-history-chart" class="history-chart"></div><p class="chart-footnote">Observed daily totals, ending at the forecast origin. No future observations enter the forecast.</p></article>
+      <div class="source-note"><span class="source-number">16+</span><p>Years of daily cycle hire records.<br><span id="source-period"></span></p><p class="source-explanation">A long record captures changing habits. Forecasting is still uncertain: weather, disruption and events can shift demand in ways past counts cannot fully explain.</p></div>
+    </section>
+
+    <section id="view-replay" class="view-panel" aria-labelledby="replay-title" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Could we have seen it coming?</p><h2 id="replay-title">Replay the forecast.</h2><p class="section-subtitle">Step through held-out weeks. Each outlook uses only history ending at its origin.</p></div><a class="button button-secondary" id="replay-export" href="/api/download">Export this week <span aria-hidden="true">↓</span></a></div>
+      <div class="replay-controls card"><div class="week-select"><label for="week-select">Forecast origin</label><select id="week-select"></select></div><div class="week-stepper"><button class="icon-button" id="previous-week" aria-label="Previous forecast week">←</button><span id="week-position"></span><button class="icon-button" id="next-week" aria-label="Next forecast week">→</button></div><label class="truth-toggle"><input type="checkbox" id="show-actual"><span class="toggle-track" aria-hidden="true"></span>Reveal observed demand</label></div>
+      <label class="range-label" for="week-range"><span>Earlier weeks</span><span>Later weeks</span></label><input type="range" id="week-range" min="0" max="0" step="1" value="0" aria-label="Choose forecast week">
+      <div class="metric-row" id="replay-metrics"></div>
+      <article class="card forecast-card"><div class="card-heading"><div><p class="eyebrow" id="replay-origin"></p><h3 id="replay-dates"></h3></div><span class="unit-tag">hires / day</span></div><div class="chart-legend"><span><i class="legend-dot"></i> Forecast</span><span><i class="legend-band"></i> Prediction range</span><span id="actual-legend" hidden><i class="legend-actual"></i> Observed</span></div><div id="replay-chart" class="forecast-chart"></div><p class="chart-footnote">Each range describes one day's forecast. It is not a guarantee for the entire week; time-series shifts can change coverage.</p></article>
+      <div id="replay-day-table" class="day-table-wrap"></div>
+      <article class="card history-card"><div class="card-heading"><div><p class="eyebrow">History behind that origin</p><h3>The preceding 90 days.</h3></div><span class="unit-tag">observed hires / day</span></div><div id="replay-history-chart" class="history-chart"></div></article>
+    </section>
+
+    <section id="view-evidence" class="view-panel" aria-labelledby="evidence-title" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Performance, in the open</p><h2 id="evidence-title">Evidence before confidence.</h2><p class="section-subtitle" id="test-period"></p></div><span class="snapshot-badge"><span aria-hidden="true"></span>Chronological test</span></div>
+      <div class="metric-row" id="evidence-metrics"></div>
+      <article class="card leaderboard-card"><div class="card-heading"><div><p class="eyebrow">Start with a meaningful comparison</p><h3>Can the model beat the obvious?</h3></div><span class="unit-tag">lower error is better</span></div><div class="table-scroll"><table class="leaderboard"><caption class="visually-hidden">Model performance on held-out forecast weeks</caption><thead><tr><th scope="col">Model</th><th scope="col">MAE <span>hires / day</span></th><th scope="col">RMSE <span>hires / day</span></th><th scope="col">WAPE <span>percentage</span></th></tr></thead><tbody id="leaderboard-body"></tbody></table></div><p class="chart-footnote">MAE is the average absolute error. RMSE gives larger misses more weight. WAPE compares total absolute error with total observed demand.</p></article>
+      <div class="diagnostic-grid"><article class="card"><div class="card-heading"><div><p class="eyebrow">Looking further ahead</p><h3>Error by horizon.</h3></div></div><div id="horizon-chart" class="bar-chart"></div><p class="chart-footnote">Forecast origins are Sundays: day 1 is Monday and day 7 is Sunday. Horizon and weekday are aligned, so their effects cannot be separated.</p></article><article class="card"><div class="card-heading"><div><p class="eyebrow">A city's weekly rhythm</p><h3>Error by weekday.</h3></div></div><div id="weekday-chart" class="bar-chart"></div><p class="chart-footnote">The same errors shown by weekday. This is not independent evidence of a weekday effect.</p></article></div>
+      <article class="card coverage-card"><div><p class="eyebrow">Uncertainty has a cost</p><h3 id="coverage-title"></h3><p id="coverage-copy"></p></div><div class="coverage-visual"><div class="coverage-track"><div id="coverage-fill"></div></div><div class="coverage-labels"><span>0%</span><span>Observed coverage</span><span>100%</span></div><p id="coverage-width"></p></div></article>
+      <div class="split-section"><p class="eyebrow">Time moves in one direction</p><div id="split-timeline" class="split-timeline"></div><p class="chart-footnote">After validation selects the model, it is refitted using training and validation history. Calibration sets the interval widths. The test period stays separate from both decisions.</p></div>
+    </section>
+
+    <section id="view-method" class="view-panel" aria-labelledby="method-title" hidden>
+      <div class="section-heading"><div><p class="eyebrow">How the outlook is made</p><h2 id="method-title">Past counts. Future calendar.<br>Clear boundaries.</h2><p class="section-subtitle">A reproducible forecasting experiment, with every prediction tied to a date.</p></div></div>
+      <div class="method-grid"><article class="method-step"><span class="step-number">01</span><h3>Keep the city's record.</h3><p>Official TfL daily cycle hire totals form the historical record. The project checks dates, duplicates, gaps and counts before modelling. Source files and checksums are recorded so the evidence can be inspected.</p></article><article class="method-step"><span class="step-number">02</span><h3>Freeze the information.</h3><p>A seven-day forecast is issued at a known origin. Recent demand and trailing statistics stop at that date. Future dates and their calendar features are available; future hire counts are not.</p></article><article class="method-step"><span class="step-number">03</span><h3>Earn the extra complexity.</h3><p>Simple forecasting baselines set the standard. Candidate models are compared using earlier validation weeks, then the selected approach is evaluated on later, held-out weeks.</p></article><article class="method-step"><span class="step-number">04</span><h3>Show the room for error.</h3><p>Prediction ranges are calibrated on Sunday forecast origins. Their coverage and width are measured on later Sunday-origin weeks. Coverage is unassessed for other origin weekdays, including the latest saved outlook.</p></article></div>
+      <div class="boundary-grid"><article class="card boundary-card"><span class="boundary-symbol" aria-hidden="true">+</span><h3>What the model knows</h3><ul><li>Daily hire counts available by the origin</li><li>Patterns in recent and seasonal demand</li><li>Known calendar information for future dates</li></ul></article><article class="card boundary-card"><span class="boundary-symbol muted" aria-hidden="true">?</span><h3>What is beyond this model</h3><ul><li>Unknown future weather and service disruption</li><li>Unrecorded events or changes in travel behaviour</li><li>Station availability, destinations or individual journeys</li></ul></article></div>
+      <div class="method-note"><h3>A forecast is a planning input.</h3><p>City-wide totals cannot prescribe bicycle redistribution. This research app does not represent a live TfL service: the latest outlook starts from the saved source cutoff. Historical counts can be revised after publication, so this retrospective test is not a reconstruction of each day's original data feed. Two source zeros during the September 2022 scheme shutdown are preserved as service counts, not interpreted as zero underlying demand.</p><a class="text-link" id="method-source-link" href="https://cycling.data.tfl.gov.uk/" target="_blank" rel="noopener">Inspect the official source <span aria-hidden="true">↗</span></a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer shell"><div><span class="footer-brand">LondonPulse</span><p>Built to make the evidence visible.</p></div><p>Source: Transport for London<br><a id="footer-source-link" href="https://cycling.data.tfl.gov.uk/" target="_blank" rel="noopener">Daily cycle hire usage</a> · <a id="data-licence-link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" target="_blank" rel="noopener">Open Government Licence</a></p><p class="footer-small">Historical data · no live feed<br>Code: MIT licence</p></footer>
+
+  <dialog id="upload-dialog" aria-labelledby="upload-title"><div class="dialog-heading"><div><p class="eyebrow">Bring another perspective</p><h2 id="upload-title">Analyse a daily history.</h2></div><button class="icon-button" id="close-upload" aria-label="Close history upload">×</button></div><p>Use London city-wide hire totals with two columns, <code>date</code> and <code>hires</code>. Provide at least 35 consecutive days. Twenty years of data will not fit here: the limit is 3,000 rows and 500 KB.</p><div class="upload-source"><label class="button button-secondary" for="history-file">Choose a CSV file</label><input id="history-file" type="file" accept=".csv,text/csv,text/plain"><a href="/api/sample" class="text-link">Download an example ↓</a></div><label for="history-text">Or paste daily counts</label><textarea id="history-text" rows="7" spellcheck="false" placeholder="date,hires&#10;2026-06-01,28000&#10;2026-06-02,29400"></textarea><p class="upload-warning">The trained model and its historical calibration remain fixed. A different period or distribution may have less reliable prediction ranges. Uploads are processed in memory.</p><div id="upload-error" class="error-banner" role="alert" hidden></div><div class="dialog-footer"><span id="upload-file-name" class="quiet"></span><button class="button button-primary" id="run-upload">Generate outlook <span aria-hidden="true">→</span></button></div></dialog>
+</body>
+</html>

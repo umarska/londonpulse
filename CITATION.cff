@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use LondonPulse, please cite this repository and attribute the TfL source data."
+title: LondonPulse
+version: 1.0.0
+date-released: '2026-10-05'
+type: software
+license: MIT
+repository-code: https://github.com/umarska/londonpulse
+authors:
+  - name: umarska
